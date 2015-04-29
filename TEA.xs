@@ -55,8 +55,9 @@ tea_crypt(self, input, output, decrypt)
             output = sv_newmortal();
         outlen = 8;
 
-        if (SvREADONLY(output) || !SvUPGRADE(output, SVt_PV))
-            croak("cannot use output as lvalue");
+        //comment this conditional to allow compilation in recent perls (like 5.20.2)
+        //if (SvREADONLY(output) || !SvUPGRADE(output, SVt_PV))
+        //    croak("cannot use output as lvalue");
 
         tea_crypt(self,
                   (unsigned char *)input,
